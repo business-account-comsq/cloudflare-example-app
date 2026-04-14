@@ -1,29 +1,15 @@
 "use server";
 
-import { db } from "@/app/db/db";
+import { getDb } from "@/app/db/db";
 import { messages } from "@/app/db/schema";
 
-type Message = {
-    id: number;
-    message: string;
-};
-  
+export async function getMessagesFromDatabase() {
+  const db = getDb({
+    DATABASE_URL: process.env.DATABASE_URL || "",
+    DATABASE_TOKEN: process.env.DATABASE_TOKEN || "",
+  });
 
-export async function getMessagesFromDatabase(): Promise<Message[]> {
-  console.log("① getMessages start");
+  const result = await db.select().from(messages);
 
-  try {
-    const result = await Promise.race([
-      db.select().from(messages),
-      new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("DB timeout")), 3000)
-      ),
-    ]);
-
-    console.log("② success");
-    return result as Message[];
-  } catch (error) {
-    console.log("❌ DB error:", error);
-    return [];
-  }
+  return result;
 }

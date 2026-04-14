@@ -1,9 +1,14 @@
-//import { config } from 'dotenv';
-import { drizzle } from 'drizzle-orm/libsql/web';
+import { drizzle } from "drizzle-orm/libsql/web";
+import { createClient } from "@libsql/client/web";
 
-//config({ path: '.env.local' }); // or .env.local
+export function getDb(env: {
+  DATABASE_URL: string;
+  DATABASE_TOKEN: string;
+}) {
+  const client = createClient({
+    url: env.DATABASE_URL,
+    authToken: env.DATABASE_TOKEN,
+  });
 
-export const db = drizzle({ connection: {
-  url: process.env.DATABASE_URL!,
-  authToken: process.env.DATABASE_TOKEN!,
-}});
+  return drizzle(client);
+}

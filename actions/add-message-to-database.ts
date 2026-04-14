@@ -1,7 +1,7 @@
 "use server";
 
-//import { db } from "@/app/db/index";
-//import { messages } from "@/app/db/schema";
+import { db } from "@/app/db/db";
+import { messages } from "@/app/db/schema";
 import { revalidatePath } from "next/cache";
 
 
@@ -10,7 +10,7 @@ export async function addMessageToDatabase(input: string): Promise<{ ok: boolean
   
     try {
       await Promise.race([
-        //db.insert(messages).values({ message: input }),
+        db.insert(messages).values({ message: input }),
         new Promise<never>((_, reject) =>
           setTimeout(() => reject(new Error("DB timeout")), 3000)
         ),

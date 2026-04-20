@@ -3,16 +3,15 @@
 import { getDb } from "@/app/db/db";
 import { messages } from "@/app/db/schema";
 import { revalidatePath } from "next/cache";
+import { getRequestContext } from "@cloudflare/next-on-pages";
 
 export async function addMessageToDatabase(message: string) {
-  const env = {
-    DATABASE_URL: process.env.DATABASE_URL || "",
-    DATABASE_TOKEN: process.env.DATABASE_TOKEN || "",
-  };
+  const ctx = getRequestContext();
 
-  console.log("② env check:", env);
-
-  const db = getDb(env);
+  const db = getDb({
+    DATABASE_URL: ctx.env.DATABASE_URL,
+    DATABASE_TOKEN: ctx.env.DATABASE_TOKEN,
+  });
 
   try {
     console.log("① add start", message);

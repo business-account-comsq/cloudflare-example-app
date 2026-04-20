@@ -23,7 +23,11 @@ export async function getMessagesFromDatabase() {
     DATABASE_TOKEN: env.DATABASE_TOKEN!
   });
 
-  const result = await db.select().from(messages);
-
-  return result;
+  try {
+    const result = await db.select().from(messages);
+    return result ?? [];
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
 }

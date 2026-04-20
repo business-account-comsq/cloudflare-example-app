@@ -6,6 +6,14 @@ export const runtime="edge"
 
 export default async function Home() {
   const messages=await getMessagesFromDatabase();
+  if (!messages) {
+    return (
+      <main className="max-w-2xl mx-auto p-10">
+        <MessageForm />
+        <div>データ取得中 or エラー</div>
+      </main>
+    );
+  }
   return (
     <main className="max-w-2xl mx-auto p-10">
       <MessageForm/>

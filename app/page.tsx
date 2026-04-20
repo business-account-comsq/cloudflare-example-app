@@ -1,10 +1,12 @@
 import MessageDisplay from "@/components/message-display";
 import MessageForm from "@/components/message-form";
 import { getMessagesFromDatabase } from "@/actions/get-message-from-database";
-
+import { unstable_noStore } from "next/cache";
 export const runtime="edge"
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 export default async function Home() {
+  unstable_noStore();
   console.log("① page start");
   let messages = null;
   try {

@@ -7,10 +7,14 @@ import { revalidatePath } from "next/cache";
 
 export async function deleteMessageToDatabase(id: number) {
   try {
-    const db = getDb({
+    const env = {
       DATABASE_URL: process.env.DATABASE_URL || "",
       DATABASE_TOKEN: process.env.DATABASE_TOKEN || "",
-    });
+    };
+  
+    console.log("② env check:", env);
+  
+    const db = getDb(env);
 
     await db.delete(messages).where(eq(messages.id, id));
 

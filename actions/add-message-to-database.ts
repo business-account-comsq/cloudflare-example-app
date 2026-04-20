@@ -1,5 +1,5 @@
 "use server";
-
+export const runtime = "edge"; 
 import { getDb } from "@/app/db/db";
 import { messages } from "@/app/db/schema";
 import { revalidatePath } from "next/cache";

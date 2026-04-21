@@ -1,16 +1,11 @@
 import MessageDisplay from "@/components/message-display";
 import MessageForm from "@/components/message-form";
 import { getMessagesFromDatabase } from "@/actions/get-message-from-database";
-import { unstable_noStore } from "next/cache";
 export const runtime="edge"
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-export const fetchCache = "force-no-store";
 export default async function Home() {
-  unstable_noStore();
   console.log("① page start");
-  let messages = null;
-  try {
+  //let messages = null;
+  /*try {
     console.log("② before fetch");
     messages = await getMessagesFromDatabase();
     console.log("③ after fetch", messages);
@@ -25,11 +20,12 @@ export default async function Home() {
         <div>データ取得中 or エラー</div>
       </main>
     );
-  }
+  }*/
   return (
     <main className="max-w-2xl mx-auto p-10">
-      <MessageForm/>
-      <MessageDisplay messages={messages}/>
+      {/*<MessageForm/>*/}
+      {/*<MessageDisplay messages={messages}/>*/}
+      <p>hello</p>
     </main>
   );
 }

@@ -18,11 +18,11 @@ export default function MessageForm() {
     return (
         <div className="flex flex-col justify-center gap-3">
             <Input
-              placeholder="add a message..." 
+              placeholder="メッセージを入力..." 
               value={message}
               onChange={(event)=>setMessage(event.target.value)}
             />
-            <Button onClick={handleAddMessageToDatabase}>Submit</Button>
+            <Button onClick={handleAddMessageToDatabase} variant="ghost"className="bg-black text-white hover:bg-gray-600">追加</Button>
         </div>
     )
 }

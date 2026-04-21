@@ -19,7 +19,7 @@ export default function MessageDisplay({ messages }: Props) {
         <div className="p-5">
             <ul>
                 {messages.map((message) => {
-                    return <li key={message.id}>{message.message}<Button variant={"destructive"} onClick={()=>handleDeleteMessageToDatabase(message.id)}>削除</Button></li>
+                    return <li key={message.id}>{message.message}<Button variant={"ghost"} onClick={()=>handleDeleteMessageToDatabase(message.id)} className="bg-red-600 text-white hover:bg-red-800">削除</Button></li>
                 })}
             </ul>
         </div>

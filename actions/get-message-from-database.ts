@@ -8,7 +8,6 @@ export async function getMessagesFromDatabase() {
   let env;
   try {
     const ctx = getRequestContext();
-    console.log("⑥ env", ctx.env);
     env = ctx.env;
   } catch (e) {
     // ビルド時やローカル環境用

@@ -1,5 +1,5 @@
-import { drizzle } from "drizzle-orm/libsql/web";
-import { createClient } from "@libsql/client/web";
+import { drizzle } from "drizzle-orm/libsql";
+import { createClient } from "@libsql/client";
 
 export function getDb(env: {
   DATABASE_URL: string;

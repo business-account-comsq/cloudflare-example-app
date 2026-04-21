@@ -4,8 +4,8 @@ import { getMessagesFromDatabase } from "@/actions/get-message-from-database";
 export const runtime="edge"
 export default async function Home() {
   console.log("① page start");
-  //let messages = null;
-  /*try {
+  let messages = null;
+  try {
     console.log("② before fetch");
     messages = await getMessagesFromDatabase();
     console.log("③ after fetch", messages);
@@ -20,12 +20,11 @@ export default async function Home() {
         <div>データ取得中 or エラー</div>
       </main>
     );
-  }*/
+  }
   return (
     <main className="max-w-2xl mx-auto p-10">
-      {/*<MessageForm/>*/}
-      {/*<MessageDisplay messages={messages}/>*/}
-      <p>hello</p>
+      <MessageForm/>
+      <MessageDisplay messages={messages}/>
     </main>
   );
 }

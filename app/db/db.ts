@@ -1,6 +1,8 @@
 import { drizzle } from "drizzle-orm/libsql/web";
 import { createClient } from "@libsql/client/web";
 
+export const runtime = "edge"; 
+
 export function getDb(env: {
   DATABASE_URL: string;
   DATABASE_TOKEN: string;

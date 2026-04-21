@@ -9,6 +9,7 @@ export function getDb(env: {
   const client = createClient({
     url: env.DATABASE_URL,
     authToken: env.DATABASE_TOKEN,
+    fetch:fetch
   });
 
   return drizzle(client);
